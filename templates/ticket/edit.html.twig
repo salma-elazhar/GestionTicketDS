@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier votre demande{% endblock %}
+
+{% block body %}
+    {{ ticket.statut }}
+    <h1>Edit Ticket</h1>
+   
+    {{ include('ticket/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ticket_index') }}"> <button class="btn btn-primary">retour</button></a>
+
+    {{ include('ticket/_delete_form.html.twig') }}
+{% endblock %}

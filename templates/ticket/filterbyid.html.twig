@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <h1>Filtrage </h1>
+  
+    <table class="table" id="datatablesSimple">
+        <thead>
+            <tr>
+                
+                <th>Titre</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Statut</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+         {% if ticket %} 
+            <tr>
+               
+                 <td>{{ ticket.getId() }}</td>
+                <td>{{ ticket.getTitre() }}</td>
+                <td>{{ ticket.getNomclient() }}</td>
+                <td>{{ ticket.getDescription() }}</td>
+                <td>{{ ticket.getStatut() }}</td>
+                <td>{{ ticket.getDate() ? ticket.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('ticket_show', {'id': ticket.getId() }) }}"><button>show</button></a>
+                    <a href="{{ path('ticket_edit', {'id': ticket.getId() }) }}"><button>edit</button></a>
+                    <a href="{{ path('ticket_delete', {'id': ticket.getId() }) }}"><button>delete</button></a>
+                </td>
+            </tr>
+            {% else %} 
+             <tr>
+                <td colspan="7">Il n y a pas d'une demande a afficher</td>
+            </tr>
+            {% endif %} 
+        </tbody>
+    </table>
+
+    <a href="{{ path('ticket_new') }}"> <button class="btn btn-primary">Creér une nouvelle demande</button></a>
+    <a href="{{ path('ticket_index') }}"> <button class="btn btn-primary">retour</button></a>
+
+{% endblock %}
+{% block title%} Filtrage {% endblock %}
+{% block title1%} Filtrage  {% endblock %}
+{% block title2%} Filtrage {% endblock %}

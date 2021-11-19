@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>liste de demandes</h1>
+   <div >
+    <form action="{{path('filterbyid')}}" method="post">
+      {{ form_widget(form) }} 
+     </form>
+   </div> 
+ <br>
+    <div >
+    <form action="{{path('filterbystatut')}}" method="post">
+      {{ form_widget(form2) }} 
+     </form>
+   </div> 
+   <br>
+    <div >
+    <form action="{{path('filterbydate')}}" method="post">
+      {{ form_widget(form3) }} 
+     </form>
+   </div> 
+    <table class="table" id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Statut</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.getId() }}</td>
+                <td>{{ ticket.getTitre() }}</td>
+                <td>{{ ticket.getNomclient() }}</td>
+                <td>{{ ticket.getDescription() }}</td>
+                <td>{{ ticket.getStatut() }}</td>
+                <td>{{ ticket.getDate() ? ticket.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('ticket_show', {'id': ticket.getId()}) }}"><button>show</button></a>
+                    <a href="{{ path('ticket_edit', {'id': ticket.getId()}) }}"><button>edit</button></a>
+                    <a href="{{ path('ticket_delete', {'id': ticket.getId()}) }}"><button>delete</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Il n y a pas des demandes a afficher</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ticket_new') }}"> <button class="btn btn-primary">Creér une nouvelle demande</button></a>
+{% endblock %}
+{% block title%} Liste de demandes {% endblock %}
+{% block title1%} Liste de demandes {% endblock %}
+{% block title2%} Liste de demandes {% endblock %}
