@@ -15,8 +15,6 @@ class TicketType extends AbstractType
             ->add('titre')
             ->add('nomclient')
             ->add('description')
-            ->add('statut')
-            ->add('date')
         ;
     }
 

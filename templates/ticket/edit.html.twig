@@ -3,7 +3,10 @@
 {% block title %}Modifier votre demande{% endblock %}
 
 {% block body %}
-    {{ ticket.statut }}
+ <div class="col-md-4 alert alert-primary" role="alert">
+ Statut :  {{ ticket.statut }}
+</div>
+    
     <h1>Edit Ticket</h1>
    
     {{ include('ticket/_form.html.twig', {'button_label': 'Update'}) }}

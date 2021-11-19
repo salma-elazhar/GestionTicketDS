@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('ticket_delete', {'id': ticket.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+<form method="post" action="{{ path('ticket_delete', {'id': ticket.id}) }}" onsubmit="return confirm('Vous étes sure que vous voulez effacer cette demande?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ticket.id) }}">
     <br>
     <button class="btn btn-primary">Supprimer</button>

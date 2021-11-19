@@ -25,6 +25,12 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class TicketController extends AbstractController
 {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
     /**
      * @Route("/", name="ticket_index", methods={"GET"})
      */
@@ -75,7 +81,7 @@ class TicketController extends AbstractController
             $datedebut1 =  new \DateTime($datedebut);   
             $datedebut2 =  new \DateTime($datefin) ;
             $list = $ticketRepository->findByDate($datedebut1,$datedebut2);
-            $this->logger->info('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+            #$this->logger->info($datedebut1);
           
             
             return $this->render('ticket/filterbydate.html.twig', [
@@ -124,15 +130,15 @@ class TicketController extends AbstractController
         if($request->isMethod('POST')){
             $formdata = $request->request->get('form');
             $statut = $formdata['statut'];
-            $list = $ticketRepository->findOneBy(['statut' => $statut]);
+            $list = $ticketRepository->findBy(['statut' => $statut]);
             
             
             //$this->logger->info('\n **********************id************************');
           
 
             
-            return $this->render('ticket/filterbyid.html.twig', [
-                'ticket' => $list
+            return $this->render('ticket/filterbydate.html.twig', [
+                'tickets' => $list
                
             ]);
         }

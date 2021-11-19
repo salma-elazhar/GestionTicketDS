@@ -36,15 +36,24 @@ class TicketRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Ticket
+    public function findOneById($value): ?Ticket
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
+            ->andWhere('t.id = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    public function findByDate($value,$value2)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.date >= :val')
+            ->andWhere('t.date <= :val2')
+            ->setParameter('val', $value)
+            ->setParameter('val2', $value2)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
